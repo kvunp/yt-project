@@ -1,0 +1,6 @@
+black==22.6.0
+fastapi==0.78.0
+fastapi-utils==0.2.1
+google-api-python-client==2.52.0
+pymongo==4.1.1
+uvicorn==0.18.2

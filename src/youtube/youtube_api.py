@@ -1,10 +1,14 @@
+from src.common.youtube import youtube
+from src.common import settings
 
+config = settings.Settings()
 
-def fun():
-    request = youtube.search().list(
+def get_latest_youtube_results(api_key):
+    youtube_build = youtube(api_key)
+    request = youtube_build.search().list(
         part = 'snippet',
-        q = 'How to make tea?',
+        q = config.YT_QUERY_STRING,
         type = 'video',
         maxResults = 50
     )
-    response = request.execute()
+    return request.execute()

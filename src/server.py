@@ -72,17 +72,17 @@ def search_yt_results(request: api_models.SearchYtResultsRequest):
                     "fields": ["title"]
                 }
             }
-        mongo_ids = []
+        mongo_ids = set()
         for doc in es_client.search(index=config.ES_INDEX_VIDEOS, query=query)["hits"]["hits"]:
             mongo_id = doc.get("_source", {}).get("mongo_id", None)
             if mongo_id:
-                mongo_ids.append(mongo_id)
+                mongo_ids.add(mongo_id)
         return JSONResponse(
             status_code=200,
             content=[doc for doc in video_collection.find(
                 {
                     '_id': {
-                        '$in': mongo_ids
+                        '$in': list(mongo_ids)
                     }
                 }
             )]

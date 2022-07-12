@@ -1,3 +1,4 @@
+## Setup
 ### Clone the repository
 `
 git clone https://github.com/kvunp/yt-project.git
@@ -14,7 +15,7 @@ docker-compose up
 Navigate to repo directory
 `
 * `
-python3 venv env
+python3 -m venv env
 ` 
 * `
 source env/bin/activate
@@ -27,9 +28,31 @@ make run
 `
 * Note : Make sure port 5000 is available
 
+## API Details
+* Base url - http://localhost:5000
+* Endpoint 1 - /get_yt_reults
+
+`
+curl --location --request GET 'localhost:5000/get_yt_results' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "skip":0,
+    "limit":10
+}'
+`
+* Endpoint 2 - /search_yt_results
+
+`
+curl --location --request GET 'localhost:5000/search_yt_results' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "query":"tea"
+}'
+`
 
 ##### Next Steps (Dev)
 ##### TODO:
+* Remove yt results from json and attach yt v3 api 
 * search both in title and description
 * Refactor api methods into corresponding helpers(db ,es)
 * search results pagination

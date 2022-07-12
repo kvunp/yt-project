@@ -54,12 +54,12 @@ curl --location --request GET 'localhost:5000/search_yt_results' \
 ##### Next Steps (Dev)
 ##### TODO:
 * Remove yt results from json and attach yt v3 api [Done]
-* search both in title and description
+* search both in title and description [Done]
 * Refactor api methods into corresponding helpers(db ,es)
 * search results pagination
 
 ##### Known Issues:
 * include server in docker (error while connecting to http://elasticsearch:9200)
-* Acknowledgement of insert document in mongo, es(if any one server is non reachable, there is no way of ack or retry at the moment) 
+* Acknowledgement of insert document in mongo, es(if any one server is non reachable, there is no way of ack or retry at the moment) - inconsistency may be created between mongo and es
 * Repitition of mongo documents in elastic search (Temporary fix applied)
 * Api Key Store(Pydantic) repair (compilation error) [Temporary fix applied]

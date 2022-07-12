@@ -32,6 +32,8 @@ make run
 * Base url - http://localhost:5000
 * Endpoint 1 - /get_yt_reults
 
+Get Paginated results which were already fetched and stored in db
+
 `
 curl --location --request GET 'localhost:5000/get_yt_results' \
 --header 'Content-Type: application/json' \
@@ -42,6 +44,8 @@ curl --location --request GET 'localhost:5000/get_yt_results' \
 `
 * Endpoint 2 - /search_yt_results
 
+Search for query in title or description using elasticsearch and fetch corresponding docs from db
+
 `
 curl --location --request GET 'localhost:5000/search_yt_results' \
 --header 'Content-Type: application/json' \
@@ -49,7 +53,12 @@ curl --location --request GET 'localhost:5000/search_yt_results' \
     "query":"tea"
 }'
 `
-
+## How it works
+* Youtube results are fetched at app startup and periodically(period in env) for a pre defined query string(query string in env) and are added to mongo(all fields) and es(only title, description, id)
+* Api keys can be fetched from db on app startup or will be fetched from static json file if not db (app restart is required if new api keys is added)
+* _id is a default index in mongo collection and is the only field being queried on(/search_yt_results), /get_yt_results is using pagination(skip, query), No new index is required
+* Mongo Collection names - videos, api_keys
+* Elasticsearch index name - video_index
 
 ##### Next Steps (Dev)
 ##### TODO:

@@ -1,0 +1,44 @@
+version: "3.7"
+services:
+  mongo:
+    image: bitnami/mongodb:4.0.2-debian-9
+    ports:
+      - 27017:27017
+
+  elasticsearch:
+    image: elasticsearch:8.3.2
+    restart: always
+    environment:
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    cap_add:
+      - IPC_LOCK
+    ports:
+      - 9200:9200
+      - 9300:9300
+
+  # ytapp:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 5000:5000
+  #   environment:
+  #     - APP_ENV=development
+  #     - MONGO_CONNECTION_STRING=mongodb://mongo:27017/yt_service
+  #     - SEARCH_RESULTS_REFRESH_INTERVAL_IN_SECONDS=600
+  #     - YT_QUERY_STRING=how to make tea
+  #     - ES_CONNECTION_STRING=http://elasticsearch:9200
+  #     - ES_INDEX_VIDEOS=video_index
+  #   depends_on:
+  #     - mongo
+  #     - elasticsearch
+
+  

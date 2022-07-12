@@ -1,9 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from fastapi_utils.tasks import repeat_every
-from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-from json import loads, dumps, load
 
 
 from src.common import settings

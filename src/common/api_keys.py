@@ -1,8 +1,6 @@
 from json import load
-from re import A
 from typing import List
-from pydantic import BaseModel, Field, parse_obj_as, parse_file_as
-from bson import ObjectId
+from pydantic import BaseModel
 
 from src.db.api_key_collection import get_api_keys_from_db
 

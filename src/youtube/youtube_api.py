@@ -9,6 +9,7 @@ def get_latest_youtube_results(api_key):
         part = 'snippet',
         q = config.YT_QUERY_STRING,
         type = 'video',
+        publishedAfter = '2022-01-01T00:00:00Z'
         maxResults = 50
     )
     return request.execute()

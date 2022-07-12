@@ -76,11 +76,20 @@ def get_yt_results(request: api_models.GetYtResultsRequest):
 def search_yt_results(request: api_models.SearchYtResultsRequest):
     try:
         query = {
-            # "bool":{},
-            "multi_match":{
-                    "query":request.query,
-                    "fields": ["title"]
-                }
+            "bool":{
+                "should": [
+                    {
+                        "match": {
+                            "title": request.query
+                        }
+                    },
+                    {
+                        "match": {
+                            "description": request.query
+                        }
+                    }
+                ]
+            }
             }
         mongo_ids = set()
         for doc in es_client.search(index=config.ES_INDEX_VIDEOS, query=query)["hits"]["hits"]:

@@ -40,6 +40,7 @@ def startup_method():
             return
         yt_response = response
     if not yt_response:
+        print("Fetching results from youtube failed. All api keys might have been expired")
         return
     video_items = yt_response.get("items", {})
 

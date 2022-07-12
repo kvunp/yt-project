@@ -66,6 +66,7 @@ curl --location --request GET 'localhost:5000/search_yt_results' \
 * search both in title and description [Done]
 * Refactor api methods into corresponding helpers(db ,es)
 * search results pagination
+* Use video, api key, api key store models
 
 ##### Known Issues:
 * include server in docker (error while connecting to http://elasticsearch:9200)
